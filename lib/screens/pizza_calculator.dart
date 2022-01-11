@@ -5,40 +5,23 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'custom_slider.dart';
+import '../custom_slider.dart';
+
 
 final List<String> souceNames = ["Острый", "Кисло-сладкий", "Сырный"];
 final pizzaSizesMinAndMax = [30.0, 50.0];
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+class PizzaCalculator extends StatefulWidget {
+  PizzaCalculator({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _PizzaCalculatorState createState() => _PizzaCalculatorState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PizzaCalculatorState extends State<PizzaCalculator> {
 
   int testoType = 0;
   double pizzaSize = pizzaSizesMinAndMax[0];
@@ -59,8 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
     txtController.text = resultCost.toString() + " руб";
   }
 
-  _MyHomePageState(){
-    calcCost();
+  @override
+  void dispose() {
+    txtController.dispose();
+    super.dispose();
   }
 
   @override
@@ -93,20 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         margin: const EdgeInsets.only(top: 33,bottom:9.0),
                         child: Text(
                             'Калькулятор пиццы',
-                            style: TextStyle(
-                                fontSize: 30.0,
-                                height: 1.21,
-                                color: Color.fromRGBO(0, 0, 0, 1)
-                            )
+                            style: Theme.of(context).textTheme.headline5
                         ),
                     ),
                     Text(
                         'Выберите параметры:',
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            height: 1.21,
-                            color: Color.fromRGBO(0, 0, 0, 1)
-                        )
+                        style: Theme.of(context).textTheme.headline6
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 33,bottom:19.0),
@@ -156,12 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Соус:',
-                        style: TextStyle(
-                          fontFamily: 'i',
-                          fontSize: 16.0,
-                          height: 1.21,
-                          color: Color.fromRGBO(0, 0, 0, 1),
-                        ),
+                        style: Theme.of(context).textTheme.headline6
                       ),
                     ),
                     Container(
@@ -263,11 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Expanded(
                                       child: Text(
                                           "Дополнительный сыр",
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              height: 1.21,
-                                              color: Color.fromRGBO(0, 0, 0, 1)
-                                          )
+                                          style: Theme.of(context).textTheme.headline6
                                       ),
                                       flex: 2,
                                     ),
@@ -294,11 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Стоимость:',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          height: 1.21,
-                          color: Color.fromRGBO(0, 0, 0, 1),
-                        ),
+                        style: Theme.of(context).textTheme.bodyText2
                       ),
                     ),
                     Container(
@@ -324,12 +288,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         margin: const EdgeInsets.only(left:42.0, top:11.0, right:42.0, bottom:12.0),
                         child:Text(
                           "Заказать",
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16.0,
-                            height: 1.17,
-                            color: Colors.white,
-                          ),
+                          style: Theme.of(context).textTheme.bodyText1
                         ),
                       ),
                       style: OutlinedButton.styleFrom(

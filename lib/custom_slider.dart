@@ -6,9 +6,9 @@ import 'package:syncfusion_flutter_core/theme.dart';
 final int overlapDistance = -13; // distance of overlaping between text and slider
 
 class CustomSliderWithTextField extends StatefulWidget {
-  const CustomSliderWithTextField({Key? key, required this.sizes, required this.callback}) : super(key: key);
   final Function(dynamic) callback;
   final List<double> sizes;
+  const CustomSliderWithTextField({Key? key, required this.sizes, required this.callback}) : super(key: key);
   @override
   _CustomSliderState createState() => _CustomSliderState(sizes, callback);
 
